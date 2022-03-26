@@ -6,8 +6,8 @@
 next_pass = ExtResource( 1 )
 metallic_specular = 1.0
 emission_enabled = true
-emission = Color( 0.541176, 0.0862745, 0.498039, 1 )
-emission_energy = 7.46
+emission = Color( 0.827451, 0.298039, 0.776471, 1 )
+emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 transmission_enabled = true

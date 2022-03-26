@@ -3,7 +3,7 @@ extends KinematicBody
 
 # Declare member variables here. Examples:
 export var speed = 4
-
+onready var particle = $Pivot/Camera/dangerEffect
 onready var camera = $Pivot/Camera
 onready var jump_sound = get_node("jump")
 var mouse_sensitivity = 0.002
@@ -90,3 +90,19 @@ func _physics_process(delta):
 	jump = false
 
 	velocity = move_and_slide(velocity, Vector3.UP, true)
+
+
+func _on_dangerzone_area_entered(area):
+	pass # Replace with function body.
+
+
+func _on_dangerzone_body_entered(body):
+	if(body.name == "player"):
+		print("in danger zone")
+		particle.emitting = true
+
+
+
+func _on_dangerzone_body_exited(body):
+	if(body.name == "player"):
+		particle.emitting = false
