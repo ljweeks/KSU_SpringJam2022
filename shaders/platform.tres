@@ -1,0 +1,14 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://addons/3D Outline/Outline.material" type="Material" id=1]
+
+[resource]
+next_pass = ExtResource( 1 )
+metallic_specular = 1.0
+emission_enabled = true
+emission = Color( 0.541176, 0.0862745, 0.498039, 1 )
+emission_energy = 7.46
+emission_operator = 0
+emission_on_uv2 = false
+transmission_enabled = true
+transmission = Color( 0, 0, 0, 1 )
