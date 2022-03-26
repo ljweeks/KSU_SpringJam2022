@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=1]
 [ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://textures/Untitled.png" type="Texture" id=4]
 [ext_resource path="res://shaders/platform.tres" type="Material" id=5]
 [ext_resource path="res://shaders/walls.tres" type="Material" id=6]
+[ext_resource path="res://sounds/jump.wav" type="AudioStream" id=7]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -238,3 +239,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.96189, 0 )
 fov = 75.0
 near = 0.15
 far = 8192.0
+
+[node name="jump" type="AudioStreamPlayer" parent="player"]
+stream = ExtResource( 7 )

@@ -5,7 +5,7 @@ extends KinematicBody
 export var speed = 4
 
 onready var camera = $Pivot/Camera
-
+onready var jump_sound = get_node("jump")
 var mouse_sensitivity = 0.002
 var start = Vector3(0, 16, 0)
 export var fall_accel = -50
@@ -80,11 +80,13 @@ func _physics_process(delta):
 		velocity.x = velocity.x * 1.05
 		velocity.z = velocity.z * 1.05
 		doubleJump = true
+		jump_sound.play()
 	
 	if(jump == true and (is_on_floor() or offEdgeTime < coyeteTime)):
 		velocity.y = jump_power
 		velocity.x = velocity.x * 1.05
 		velocity.z = velocity.z * 1.05
+		jump_sound.play()
 	jump = false
 
 	velocity = move_and_slide(velocity, Vector3.UP, true)
