@@ -2,21 +2,26 @@ extends KinematicBody
 
 
 # Declare member variables here. Examples:
-export var speed = 4
+export var speed = 3.7
 onready var particle = $Pivot/Camera/dangerEffect
 onready var camera = $Pivot/Camera
 onready var jump_sound = get_node("jump")
 var mouse_sensitivity = 0.002
 var start = Vector3(0, 16, 0)
-export var fall_accel = -50
+export var fall_accel = -70
 var doubleJump = false
 var velocity = Vector3.ZERO
 var offEdgeTime = 0.0
-var coyeteTime = 0.15
+var coyeteTime = 0.3
 var jump = false
 var max_speed = 300
 var jump_power = 25
 var paused = false
+var jumpTime = 0
+var shake = false
+var shake_power = 0
+var prev_pos = global_transform.origin
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -26,8 +31,8 @@ func _ready():
 
 func get_inputs():
 	var input_dir = Vector3()
-	if Input.is_action_just_pressed("reset"):
-		global_transform.origin = start
+	#if Input.is_action_just_pressed("reset"):
+	#	global_transform.origin = prev_pos
 	if Input.is_action_pressed("move_right"):
 		input_dir += global_transform.basis.x
 	if Input.is_action_pressed("move_left"):
@@ -76,9 +81,9 @@ func _physics_process(delta):
 	velocity.z = vel.z
 	
 	if(jump == true and (not is_on_floor()) and offEdgeTime > coyeteTime and doubleJump == false):
-		velocity.y = jump_power * 0.75 #double jump power
-		velocity.x = velocity.x * 1.05
-		velocity.z = velocity.z * 1.05
+		velocity.y = jump_power * 0.8 #double jump power
+		#velocity.x = velocity.x * 1.05
+		#velocity.z = velocity.z * 1.05
 		doubleJump = true
 		jump_sound.play()
 	
@@ -87,10 +92,35 @@ func _physics_process(delta):
 		velocity.x = velocity.x * 1.05
 		velocity.z = velocity.z * 1.05
 		jump_sound.play()
+		
+	if(jump == true):
+		jumpTime += delta
+	
 	jump = false
-
+	
+	if(global_transform.origin.y < -100):
+		velocity = velocity * 0
+		global_transform.origin = prev_pos
+		doubleJump = false
+	
+	if shake_power > 0:
+		shake()
+		shake_power -= 1
+	
+	
 	velocity = move_and_slide(velocity, Vector3.UP, true)
+	
+	if is_on_floor() and jumpTime > 0.005:		
+		offEdgeTime = 0
+		shake_power = jumpTime * 100
+		jumpTime = 0
+		prev_pos = global_transform.origin
+		prev_pos.y += 5
 
+func shake():
+	camera.set_h_offset(rand_range(-1, 1)*0.1 * shake_power)
+	camera.set_v_offset(rand_range(-1, 1)*0.1 * shake_power)
+	print("shake")
 
 func _on_dangerzone_area_entered(area):
 	pass # Replace with function body.

@@ -1,0 +1,13 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+path="res://.import/Textured.3.map-a148a030198136a1b5e1b85aabe0aa7a.tres"
+
+[deps]
+
+source_file="res://maps/autosave/Textured.3.map"
+dest_files=[ "res://.import/Textured.3.map-a148a030198136a1b5e1b85aabe0aa7a.tres" ]
+
+[params]
+

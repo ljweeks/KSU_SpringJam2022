@@ -7,15 +7,12 @@ extends Area
 
 
 # Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	translate(Vector3(1, 0, 0) * delta * 20) 
 	if(get_overlapping_bodies()):
 		for body in get_overlapping_bodies():
 			if(body.name == "player"):
-				print("DEAD")
-				get_tree().change_scene("res://lose.tscn")
-	
+				get_tree().change_scene("res://win.tscn")

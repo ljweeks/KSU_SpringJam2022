@@ -207,6 +207,7 @@ _global_script_class_icons={
 [application]
 
 config/name="springJam"
+run/main_scene="res://Start.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]

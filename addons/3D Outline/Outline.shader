@@ -16,7 +16,7 @@ void vertex() {
 
 void fragment() {
 	if (enable) {
-		ALBEDO = vec3(0.843,0.012,0.988);
+		ALBEDO = vec3(0.012,0.827,0.988); //0.012,0.827,0.988 // 0.843,0.012,0.988
 		EMISSION = vec3(0.843,0.012,0.988);
 	}
 }
