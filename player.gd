@@ -7,7 +7,7 @@ onready var particle = $Pivot/Camera/dangerEffect
 onready var camera = $Pivot/Camera
 onready var jump_sound = get_node("jump")
 onready var land_sound = get_node("land")
-var mouse_sensitivity = 0.002
+var mouse_sensitivity = 0.001
 var start = Vector3(-5, 52, 5)
 export var fall_accel = -70
 var doubleJump = false
@@ -26,7 +26,7 @@ var prev_pos = global_transform.origin
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -77,41 +77,41 @@ func _physics_process(delta):
 		vel.z = max_speed
 	if vel.z < -max_speed:
 		vel.z = -max_speed
-	
+
 	velocity.x = vel.x
 	velocity.z = vel.z
-	
+
 	if(jump == true and (not is_on_floor()) and offEdgeTime > coyeteTime and doubleJump == false):
 		velocity.y = jump_power * 0.8 #double jump power
 		#velocity.x = velocity.x * 1.05
 		#velocity.z = velocity.z * 1.05
 		doubleJump = true
 		jump_sound.play()
-	
+
 	if(jump == true and (is_on_floor() or offEdgeTime < coyeteTime)):
 		velocity.y = jump_power
 		velocity.x = velocity.x * 1.05
 		velocity.z = velocity.z * 1.05
 		jump_sound.play()
-		
+
 	if(jump == true):
 		jumpTime += delta
-	
+
 	jump = false
-	
+
 	if(global_transform.origin.y < -100):
 		velocity = velocity * 0
 		global_transform.origin = prev_pos
 		doubleJump = false
-	
+
 	if shake_power > 0:
 		shake()
 		shake_power -= 1
-	
-	
+
+
 	velocity = move_and_slide(velocity, Vector3.UP, true)
-	
-	if is_on_floor() and jumpTime > 0.005:		
+
+	if is_on_floor() and jumpTime > 0.005:
 		offEdgeTime = 0
 		shake_power = jumpTime * 100
 		jumpTime = 0
