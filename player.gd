@@ -6,8 +6,9 @@ export var speed = 3.7
 onready var particle = $Pivot/Camera/dangerEffect
 onready var camera = $Pivot/Camera
 onready var jump_sound = get_node("jump")
+onready var land_sound = get_node("land")
 var mouse_sensitivity = 0.002
-var start = Vector3(0, 16, 0)
+var start = Vector3(-5, 52, 5)
 export var fall_accel = -70
 var doubleJump = false
 var velocity = Vector3.ZERO
@@ -114,6 +115,7 @@ func _physics_process(delta):
 		offEdgeTime = 0
 		shake_power = jumpTime * 100
 		jumpTime = 0
+		land_sound.play()
 		prev_pos = global_transform.origin
 		prev_pos.y += 5
 

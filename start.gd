@@ -12,6 +12,7 @@ func _ready():
 	connect("pressed", self, "start_game")
 	OS.window_fullscreen = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 

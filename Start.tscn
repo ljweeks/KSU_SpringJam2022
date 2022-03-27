@@ -1,23 +1,69 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://start.gd" type="Script" id=1]
+[ext_resource path="res://New_Project.wav" type="AudioStream" id=2]
+[ext_resource path="res://menuMusic.gd" type="Script" id=3]
 
 [node name="Control" type="Control"]
+anchor_left = 0.379
+anchor_top = 0.559
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -387.096
+margin_top = -335.4
+margin_right = -1.0
+margin_bottom = 3.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
-anchor_right = 0.45
-anchor_bottom = 0.573
-margin_left = 461.0
-margin_top = 273.0
-margin_right = 153.2
-margin_bottom = -50.8
+[node name="Label" type="Label" parent="."]
+anchor_right = 0.237
+anchor_bottom = 0.247
+margin_left = 602.0
+margin_top = 106.0
+margin_right = 620.52
+margin_bottom = 110.12
+text = "RUN"
+
+[node name="menuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Container" type="Container" parent="."]
+anchor_right = 0.398
+anchor_bottom = 0.493
+margin_left = 59.0
+margin_top = 57.0
+margin_right = 59.244
+margin_bottom = 56.721
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Container"]
+anchor_left = 0.4
+anchor_top = 0.367
+anchor_right = 0.682
+anchor_bottom = 0.595
+margin_left = 130.2
+margin_top = 61.421
+margin_right = 159.92
+margin_bottom = 72.301
 text = "Start"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="controls" type="Label" parent="."]
+anchor_right = 0.028
+anchor_bottom = 0.104
+margin_left = 554.0
+margin_top = 482.0
+margin_right = 728.384
+margin_bottom = 484.288
+text = "Controls
+WASD to move
+Mouse to look
+Space to jump and double jump"
